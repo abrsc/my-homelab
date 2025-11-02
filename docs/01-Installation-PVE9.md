@@ -10,6 +10,8 @@ Before installation, the following BIOS settings were required:
 * **Secure Boot:** `Disabled` (Required to boot the Proxmox installer).
 * **Integrated Graphics:** `Set to 64MB` (To free up system RAM).
 
+---
+
 ## 2. Installation Process
 
 * **Installer:** Used Rufus as Ventoy had issues with the PVE 9 ISO.
@@ -20,6 +22,8 @@ Before installation, the following BIOS settings were required:
 
 <img width="1338" height="775" alt="imagen" src="https://github.com/user-attachments/assets/32d51705-b18d-4223-ace8-15b1922b1539" />
 <img width="2552" height="1255" alt="imagen" src="https://github.com/user-attachments/assets/94fe6579-0266-4205-a0cc-68a87034953b" />
+
+---
 
 ## 3. Post-Installation: Fixing APT Repositories (PVE 9 / Trixie)
 
@@ -60,6 +64,8 @@ Signed-By: /usr/share/keyrings/ceph-archive-keyring.gpg
 apt update
 apt full-upgrade
 ```
+
+---
 
 ## 4. System Benchmark
 
