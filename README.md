@@ -29,7 +29,7 @@ The goal is to build a hands-on environment to practice system administration, n
 All detailed installation, configuration, and troubleshooting steps are logged in the `/docs` folder.
 
 * **Phase 1: Installation**
-    * **[📄 01: Proxmox VE 9 (Trixie) Installation](./docs/01-Installation-PVE9.md)**
+    * **[📄 01: Proxmox VE 9 Installation](./docs/01-Installation-PVE9.md)**
     * *(This log covers BIOS settings, PVE installation, and fixing APT repositories)*
 
 * **Phase 2: Core Services**
