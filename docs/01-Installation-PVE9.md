@@ -1,4 +1,4 @@
-# 01: Proxmox VE 9 (Trixie) Installation
+# 01: Proxmox VE 9 Installation
 
 This log documents the initial setup of the Proxmox VE 9 server.
 
