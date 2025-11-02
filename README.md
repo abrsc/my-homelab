@@ -18,7 +18,7 @@ The goal is to build a hands-on environment to practice system administration, n
 
 ## 2. Software Stack
 
-* **Hypervisor:** Proxmox VE 9 (Trixie)
+* **Hypervisor:** Proxmox VE 9
 * **Boot USB:** Ventoy & Rufus
 * **Core Services (Planned):** Pi-hole, Active Directory, Kali Linux, pfSense.
 
