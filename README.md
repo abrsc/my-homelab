@@ -1,2 +1,39 @@
-# my-homelab
-My Proxmox Homelab documentation
+# My Proxmox Homelab Project
+
+Welcome to the documentation for my personal homelab. This project transforms a recycled PC into a fully functional virtualization server using Proxmox VE.
+
+The goal is to build a hands-on environment to practice system administration, networking, and cybersecurity concepts for my studies in System & Network Administration (Spanish "ASIR" vocational program) and future certifications.
+
+---
+
+## 1. Hardware Stack
+
+* **Server:** Recycled PC (Gigabyte A320M-S2H V2)
+* **CPU:** AMD Ryzen 5 2400G
+* **RAM:** 16GB DDR4
+* **Storage:** 500GB NVMe SSD
+* **Network:** 5-Port Gigabit Switch
+
+---
+
+## 2. Software Stack
+
+* **Hypervisor:** Proxmox VE 9 (Trixie)
+* **Boot USB:** Ventoy & Rufus
+* **Core Services (Planned):** Pi-hole, Active Directory, Kali Linux, pfSense.
+
+---
+
+## 3. Project Documentation
+
+All detailed installation, configuration, and troubleshooting steps are logged in the `/docs` folder.
+
+* **Phase 1: Installation**
+    * **[📄 01: Proxmox VE 9 (Trixie) Installation](./docs/01-Installation-PVE9.md)**
+    * *(This log covers BIOS settings, PVE installation, and fixing APT repositories)*
+
+* **Phase 2: Core Services**
+    * *[Coming Soon]*
+
+* **Phase 3: Networking & Security**
+    * *[Coming Soon]*
