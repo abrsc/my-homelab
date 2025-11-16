@@ -31,9 +31,12 @@ All detailed installation, configuration, and troubleshooting steps are logged i
 * **Phase 1: Installation**
     * **[📄 01: Proxmox VE 9 Installation](./docs/01-Installation-PVE9.md)**
     * *(This log covers BIOS settings, PVE installation, and fixing APT repositories)*
+    * **[📄 02: VM Template - Rocky Linux 10](./docs/02-Template-Rocky10.md)**
+    * *(Steps for creating a reusable, cloud-init-enabled Rocky 10 template)*
 
 * **Phase 2: Core Services**
-    * *[Coming Soon]*
+    * **[📄 03: LXC - AdGuard Home](./docs/03-LXC-AdGuard.md)**
+    * *(Fast deployment of a network-wide DNS ad-blocker)*
 
 * **Phase 3: Networking & Security**
     * *[Coming Soon]*
