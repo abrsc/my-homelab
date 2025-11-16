@@ -93,6 +93,7 @@ Two hosts were created to manage the core services:
 - **Forward Hostname:** `192.168.1.100`
 - **Forward Port:** `8006`
 - **SSL:** Assigned the custom `*.lan` certificate and enabled **Force SSL**
+- **Note:** `WebSocket Support` must be enabled (on the main `Details` tab) for the Proxmox console (noVNC) to function correctly.
 
 ### B. adguard-home.lan
 
