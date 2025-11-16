@@ -86,7 +86,7 @@ Upload `lan.key` and `lan.crt` to:
 
 Two hosts were created to manage the core services:
 
-### A. proxmox.lan
+### A. proxmox-ve.lan
 
 - **Domain Name:** `proxmox-ve.lan`
 - **Scheme:** `https`
@@ -94,7 +94,7 @@ Two hosts were created to manage the core services:
 - **Forward Port:** `8006`
 - **SSL:** Assigned the custom `*.lan` certificate and enabled **Force SSL**
 
-### B. adguard.lan
+### B. adguard-home.lan
 
 - **Domain Name:** `adguard-home.lan`
 - **Scheme:** `http`
