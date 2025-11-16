@@ -37,7 +37,7 @@ All detailed installation, configuration, and troubleshooting steps are logged i
 * **Phase 2: Core Services**
     * **[📄 03: LXC - AdGuard Home](./docs/03-LXC-AdGuard.md)**
     * *(Fast deployment of a network-wide DNS ad-blocker)*
-    * * **[📄 04: LXC - Nginx Proxy Manager Plus](./docs/04-LXC-NginxProxyManager.md)**
+    * **[📄 04: LXC - Nginx Proxy Manager Plus](./docs/04-LXC-NginxProxyManager.md)**
     * *(Internal reverse proxy for clean URLs and local SSL)*
 
 * **Phase 3: Networking & Security**
