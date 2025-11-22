@@ -20,8 +20,11 @@ The goal is to build a hands-on environment to practice system administration, n
 
 * **Hypervisor:** Proxmox VE 9
 * **Boot USB:** Ventoy & Rufus
-* **Core Services (Planned):** Pi-hole, Active Directory, Kali Linux, pfSense.
-
+* **Network & Security:** Cloudflare Zero Trust (Tunnel), Nginx Proxy Manager.
+* **Deployed Services:**
+    * **AdGuard Home** (DNS/AdBlock)
+    * **WordPress** (Production CMS behind Cloudflare Tunnel)
+* **Planned:** Active Directory, OPNsense, Uptime Kuma, Tailscale.
 ---
 
 ## 3. Project Documentation
@@ -39,6 +42,8 @@ All detailed installation, configuration, and troubleshooting steps are logged i
     * *(Fast deployment of a network-wide DNS ad-blocker)*
     * **[📄 04: LXC - Nginx Proxy Manager Plus](./docs/04-LXC-NginxProxyManager.md)**
     * *(Internal reverse proxy for clean URLs and local SSL)*
+    * **[📄 05: LXC - WordPress & Cloudflare Tunnel](./docs/05-LXC-WordPress-Cloudflare.md)**
+    * *(Production deployment via Community Scripts, secured behind Cloudflare Zero Trust with custom PHP/Nginx tuning)*
 
 * **Phase 3: Networking & Security**
     * *[Coming Soon]*
