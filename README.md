@@ -36,6 +36,8 @@ All detailed installation, configuration, and troubleshooting steps are logged i
     * *(This log covers BIOS settings, PVE installation, and fixing APT repositories)*
     * **[📄 02: VM Template - Rocky Linux 10](./docs/02-Template-Rocky10.md)**
     * *(Steps for creating a reusable, cloud-init-enabled Rocky 10 template)*
+    * **[📄 06: Storage Expansion - 4TB HDD](./docs/06-Storage-Expansion-4TB.md)**
+    * *(Adding a dedicated backup drive, XFS formatting, and directory mounting)*
 
 * **Phase 2: Core Services**
     * **[📄 03: LXC - AdGuard Home](./docs/03-LXC-AdGuard.md)**
