@@ -30,7 +30,6 @@ Create a base template to quickly deploy new VMs without full re-installation. T
 4.  Installed the QEMU Guest Agent (the software side):
     ```bash
     dnf install qemu-guest-agent -y
-    systemctl enable --now qemu-guest-agent
     ```
 5.  Installed Cloud-Init:
     ```bash
