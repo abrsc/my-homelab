@@ -42,7 +42,7 @@ mv /etc/apt/sources.list.d/pve-enterprise.sources /etc/apt/sources.list.d/pve-en
 
 ```plaintext
 Types: deb
-URIs: [http://download.proxmox.com/debian/pve](http://download.proxmox.com/debian/pve)
+URIs: http://download.proxmox.com/debian/pve
 Suites: trixie
 Components: pve-no-subscription
 Signed-By: /usr/share/keyrings/proxmox-archive-keyring.gpg
@@ -52,7 +52,7 @@ Signed-By: /usr/share/keyrings/proxmox-archive-keyring.gpg
 
 ```plaintext
 Types: deb
-URIs: [http://download.proxmox.com/debian/ceph-squid](http://download.proxmox.com/debian/ceph-squid)
+URIs: http://download.proxmox.com/debian/ceph-squid
 Suites: trixie
 Components: no-subscription
 Signed-By: /usr/share/keyrings/ceph-archive-keyring.gpg
