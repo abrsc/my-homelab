@@ -7,12 +7,15 @@ The goal is to build a hands-on environment to practice system administration, n
 ---
 
 ## 1. Hardware Stack
-
-* **Server:** Recycled PC (Gigabyte A320M-S2H V2)
-* **CPU:** AMD Ryzen 5 2400G
-* **RAM:** 16GB DDR4
-* **Storage:** 500GB NVMe SSD
-* **Network:** 5-Port Gigabit Switch
+* **Server:** Custom Workstation (Asus PRIME H510M-A R2.0)
+* **CPU:** Intel Core i5-10400
+* **RAM:** 64GB DDR4 2666MHz
+* **GPU:** NVIDIA GeForce RTX 3060 12GB (Planned for AI & Transcoding)
+* **Storage:**
+    * **System & ISOs:** 480GB SATA SSD
+    * **VM Storage:** 1TB NVMe
+* **Power:** Salicru SPS SOHO+ 850VA UPS (Managed via NUT)
+* **Backup Node:** Repurposed Ryzen PC (Proxmox Backup Server)
 
 ---
 
@@ -24,7 +27,8 @@ The goal is to build a hands-on environment to practice system administration, n
 * **Deployed Services:**
     * **AdGuard Home** (DNS/AdBlock)
     * **WordPress** (Production CMS behind Cloudflare Tunnel)
-* **Planned:** Active Directory, OPNsense, Uptime Kuma, Tailscale.
+    * **Uptime Kuma** (Monitoring via Docker)
+* **Planned:** Active Directory, OPNsense, Kubernetes (K3s), Tailscale.
 ---
 
 ## 3. Project Documentation
@@ -32,12 +36,16 @@ The goal is to build a hands-on environment to practice system administration, n
 All detailed installation, configuration, and troubleshooting steps are logged in the `/docs` folder.
 
 * **Phase 1: Installation**
-    * **[📄 01: Proxmox VE 9 Installation](./docs/01-Installation-PVE9.md)**
+    * **[📄 01: Proxmox VE Installation](./docs/01-Installation-PVE9.md)**
     * *(This log covers BIOS settings, PVE installation, and fixing APT repositories)*
     * **[📄 02: VM Template - Rocky Linux 10](./docs/02-Template-Rocky10.md)**
     * *(Steps for creating a reusable, cloud-init-enabled Rocky 10 template)*
-    * **[📄 06: Storage Expansion - 4TB HDD](./docs/06-Storage-Expansion-4TB.md)**
+    * **[📄 06: Storage Expansion - Backup Strategy](./docs/06-Storage-Expansion-4TB.md)**
     * *(Adding a dedicated backup drive, XFS formatting, and directory mounting)*
+    * **[📄 08: Infrastructure Migration](./docs/08-Infrastructure-Migration.md)**
+    * *(Documenting the move to new hardware and repurposing the old node as PBS)*
+    * **[📄 09: Power Protection - UPS & NUT](./docs/09-UPS-Configuration-NUT.md)**
+    * *(Automated graceful shutdown configuration)*
 
 * **Phase 2: Core Services**
     * **[📄 03: LXC - AdGuard Home](./docs/03-LXC-AdGuard.md)**
@@ -46,6 +54,8 @@ All detailed installation, configuration, and troubleshooting steps are logged i
     * *(Internal reverse proxy for clean URLs and local SSL)*
     * **[📄 05: LXC - WordPress & Cloudflare Tunnel](./docs/05-LXC-WordPress-Cloudflare.md)**
     * *(Production deployment via Community Scripts, secured behind Cloudflare Zero Trust with custom PHP/Nginx tuning)*
+    * **[📄 07: Docker Host - Uptime Kuma](./docs/07-Docker-UptimeKuma.md)**
+    * *(Monitoring stack deployed via Docker Compose on Rocky Linux)*
 
 * **Phase 3: Networking & Security**
     * *[Coming Soon]*
