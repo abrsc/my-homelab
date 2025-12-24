@@ -66,6 +66,8 @@ All detailed installation, configuration, and troubleshooting steps are logged i
     * *(Documenting the move to new hardware and repurposing the old node as PBS)*
     * **[📄 09: Power Protection - UPS & NUT](./docs/09-UPS-Configuration-NUT.md)**
     * *(Automated graceful shutdown configuration)*
+    * **[📄 10: Backup Server Setup](./docs/10-PBS-Setup.md)**
+    * *(Installation and configuration of the dedicated PBS node)*
 
 * **Phase 2: Core Services**
     * **[📄 03: LXC - AdGuard Home](./docs/03-LXC-AdGuard.md)**
