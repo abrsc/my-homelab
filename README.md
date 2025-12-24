@@ -53,7 +53,7 @@ All detailed installation, configuration, and troubleshooting steps are logged i
     * **[📄 04: LXC - Nginx Proxy Manager Plus](./docs/04-LXC-NginxProxyManager.md)**
     * *(Internal reverse proxy for clean URLs and local SSL)*
     * **[📄 05: LXC - WordPress & Cloudflare Tunnel](./docs/05-LXC-WordPress-Cloudflare.md)**
-    * *(Production deployment via Community Scripts, secured behind Cloudflare Zero Trust with custom PHP/Nginx tuning)*
+    * *(Production deployment via Community Scripts, secured behind Cloudflare Zero Trust)*
     * **[📄 07: Docker Host - Uptime Kuma](./docs/07-Docker-UptimeKuma.md)**
     * *(Monitoring stack deployed via Docker Compose on Rocky Linux)*
 
