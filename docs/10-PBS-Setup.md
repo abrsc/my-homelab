@@ -1,4 +1,4 @@
-<img width="922" height="350" alt="imagen" src="https://github.com/user-attachments/assets/7b96674a-29a6-432a-9d2b-787d661dd936" /># 10: Dedicated Backup Server (PBS) Setup
+# 10: Dedicated Backup Server (PBS) Setup
 
 This log documents the repurposing of the legacy Proxmox host into a dedicated **Proxmox Backup Server (PBS)**. This ensures that backups are physically separated from the production hypervisor, following the "3-2-1 Backup Strategy" principles.
 
