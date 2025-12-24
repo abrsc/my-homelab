@@ -19,7 +19,26 @@ The goal is to build a hands-on environment to practice system administration, n
 
 ---
 
-## 2. Software Stack
+## 2. Network Map
+
+The network is organized into logical zones. Critical infrastructure uses Static IPs, while connectors and clients remain on DHCP.
+
+| Zone | IP Address | Device/Service | Hostname | Type |
+| :--- | :--- | :--- | :--- | :--- |
+| **Network** | `.1` | Router / Gateway | `ZTE:F6640` | Hardware |
+| **Infra (Core)**| `.50` | DNS / AdBlock | `adguard-home-dns` | LXC |
+| | `.51` | Reverse Proxy | `npmplus` | LXC |
+| | `.60` | Docker Host | `docker-prod` | VM (Rocky) |
+| **Hardware** | `.99` | **Backup Server** | `proxmox-pbs` | PBS 4.1 |
+| | `.100` | **Hypervisor** | `proxmox-ve` | PVE 9.1 |
+| **Services** | `.102` | WordPress | `wordpress` | LXC |
+| | `.120` | Ghostfolio | `ghostfolio` | LXC |
+| **Connectivity**| *(DHCP)* | Cloudflare Tunnel | `cloudflared` | LXC |
+| **DHCP** | `.128+` | Clients (PC, Wifi...) | - | Dynamic |
+
+---
+
+## 3. Software Stack
 
 * **Hypervisor:** Proxmox VE 9
 * **Boot USB:** Ventoy & Rufus
@@ -31,7 +50,7 @@ The goal is to build a hands-on environment to practice system administration, n
 * **Planned:** Active Directory, OPNsense, Kubernetes (K3s), Tailscale.
 ---
 
-## 3. Project Documentation
+## 4. Project Documentation
 
 All detailed installation, configuration, and troubleshooting steps are logged in the `/docs` folder.
 
