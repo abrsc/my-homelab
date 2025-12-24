@@ -26,12 +26,31 @@ apt install nut -y
 
 ---
 
-## 3. Driver Configuration (`/etc/nut/ups.conf`)
+## 3. Device Identification
 
-I configured the driver with specific safety overrides.
-Although the unit is new and Line-interactive, I prefer a conservative approach to ensure the system has ample time to stop all VMs cleanly before the battery runs out.
+To configure the driver correctly, I needed to find the specific USB identifiers of the UPS.
+I used the `lsusb` command to list connected devices:
 
-The system is forced to initiate shutdown when the battery drops to **25%**.
+```bash
+lsusb
+```
+
+**Output:**
+```text
+Bus 001 Device 004: ID 06da:ffff Phoenixtec Power Co., Ltd
+```
+*(Note: Salicru uses Phoenixtec internals, hence the name).*
+
+This confirmed the IDs needed for configuration:
+* **Vendor ID:** `06da`
+* **Product ID:** `ffff`
+
+---
+
+## 4. Driver Configuration (`/etc/nut/ups.conf`)
+
+I configured the driver using the IDs found above and added specific safety overrides.
+To ensure the system has ample time to stop all VMs cleanly before the battery runs out, I force the shutdown threshold to **25%**.
 
 ```ini
 [ups]
@@ -53,16 +72,16 @@ The system is forced to initiate shutdown when the battery drops to **25%**.
 ### Notes
 
 - **`ignorelb`**
-  Ignores the UPS hardware *Low Battery* signal to rely on the percentage value instead.
+  Ignores the UPS hardware *Low Battery* signal to rely on the software percentage value instead.
 
 - **`override.battery.charge.low = 25`**
-  Forces NUT to initiate shutdown once battery drops below 25%. This provides a safe buffer for the OS to commit data to disks.
+  Forces NUT to initiate shutdown once battery drops below 25%. This creates a safe buffer for the OS to commit data to disks.
 
 ---
 
-## 4. User Configuration (`/etc/nut/upsd.users`)
+## 5. User Configuration (`/etc/nut/upsd.users`)
 
-Defined an administrative user to allow the monitoring daemon (`upsmon`) to communicate with the UPS server.
+Defined an administrative user to allow the monitoring daemon (`upsmon`) to communicate with the UPS server locally.
 
 ```ini
 [admin]
@@ -74,19 +93,17 @@ Defined an administrative user to allow the monitoring daemon (`upsmon`) to comm
 
 ---
 
-## 5. Monitor Configuration
+## 6. Monitor Configuration
 
-### 5.1 Mode (`/etc/nut/nut.conf`)
+### 6.1 Mode (`/etc/nut/nut.conf`)
 
 ```ini
 MODE=netserver
 ```
 
----
+### 6.2 Monitor (`/etc/nut/upsmon.conf`)
 
-### 5.2 Monitor (`/etc/nut/upsmon.conf`)
-
-Configured the local monitoring client to authenticate with the user created in Step 4.
+Configured the local monitoring client to authenticate with the user created in Step 5.
 
 ```ini
 MONITOR ups@localhost 1 admin secret master
@@ -94,31 +111,30 @@ MONITOR ups@localhost 1 admin secret master
 
 ---
 
-## 6. Testing & Verification
+## 7. Testing & Verification
 
-### 6.1 Status Check
+### 7.1 Status Check
 
 ```bash
 upsc ups
 ```
 
-### 6.2 Behavior Logic
+### 7.2 Behavior Logic
 
 - **Voltage Dip/Spike**
-  UPS uses AVR (Automatic Voltage Regulation) to stabilize output without using the battery.
+  UPS uses AVR (Automatic Voltage Regulation) to stabilize output without switching to battery.
 
 - **Total Power Loss**
   UPS switches to battery → NUT detects `OB` (*On Battery*).
 
 - **Battery < 25%**
-  NUT triggers the shutdown command.
+  NUT triggers the shutdown command because of the override settings.
 
 - **Shutdown Sequence**
   Proxmox gracefully stops all VMs/CTs, then powers off the host.
 
 This ensures data integrity and prevents filesystem corruption.
 
-
-## 7. Screenshots
+## 8. Screenshots
 
 <img width="800" alt="upsc ups result" src="https://github.com/user-attachments/assets/6b09f55b-912e-48e7-96df-e166dea1ef0b" />
