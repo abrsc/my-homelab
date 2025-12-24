@@ -1,56 +1,26 @@
 # 09: Power Protection – UPS & NUT Configuration
 
 This log documents the installation of **Network UPS Tools (NUT)** to manage a **Salicru SPS SOHO+ 850VA** UPS.
-The goal is to ensure **automated, graceful shutdowns** during power outages to prevent data corruption.
+The goal is to ensure **automated, graceful shutdowns** for both the Hypervisor (Master) and the Backup Server (Slave) during power outages.
 
 ---
 
 ## 1. Hardware
 
 - **Device:** Salicru SPS SOHO+ 850VA
-- **Type:** Line-interactive (with AVR - Automatic Voltage Regulation)
+- **Type:** Line-interactive (with AVR)
 - **Status:** New Unit
-- **Connection:** USB to Proxmox Host
+- **Connection:** USB to Proxmox Host (PVE - 192.168.1.100)
 - **Driver:** `usbhid-ups`
 
 ---
 
-## 2. Installation
+## 2. Master Configuration (PVE Node)
 
-Installed the standard NUT package from the Debian repositories:
+The Proxmox VE node acts as the **NUT Master**. It connects directly to the UPS via USB and broadcasts the status to the network.
 
-```bash
-apt update
-apt install nut -y
-```
-
----
-
-## 3. Device Identification
-
-To configure the driver correctly, I needed to find the specific USB identifiers of the UPS.
-I used the `lsusb` command to list connected devices:
-
-```bash
-lsusb
-```
-
-**Output:**
-```text
-Bus 001 Device 004: ID 06da:ffff Phoenixtec Power Co., Ltd
-```
-*(Note: Salicru uses Phoenixtec internals, hence the name).*
-
-This confirmed the IDs needed for configuration:
-* **Vendor ID:** `06da`
-* **Product ID:** `ffff`
-
----
-
-## 4. Driver Configuration (`/etc/nut/ups.conf`)
-
-I configured the driver using the IDs found above and added specific safety overrides.
-To ensure the system has ample time to stop all VMs cleanly before the battery runs out, I force the shutdown threshold to **25%**.
+### 2.1 Driver Configuration (`/etc/nut/ups.conf`)
+Defined specific safety overrides to force shutdown at 25% battery.
 
 ```ini
 [ups]
@@ -69,19 +39,16 @@ To ensure the system has ample time to stop all VMs cleanly before the battery r
     ondelay = 30
 ```
 
-### Notes
+### 2.2 Network Listening (`/etc/nut/upsd.conf`)
+**Crucial:** Configured the daemon to listen on the LAN interface so the Backup Server (Slave) can connect. Without this, remote connections are refused.
 
-- **`ignorelb`**
-  Ignores the UPS hardware *Low Battery* signal to rely on the software percentage value instead.
+```ini
+LISTEN 127.0.0.1 3493
+LISTEN 192.168.1.100 3493
+```
 
-- **`override.battery.charge.low = 25`**
-  Forces NUT to initiate shutdown once battery drops below 25%. This creates a safe buffer for the OS to commit data to disks.
-
----
-
-## 5. User Configuration (`/etc/nut/upsd.users`)
-
-Defined an administrative user to allow the monitoring daemon (`upsmon`) to communicate with the UPS server locally.
+### 2.3 User Access (`/etc/nut/upsd.users`)
+Created an admin user for monitoring.
 
 ```ini
 [admin]
@@ -91,50 +58,67 @@ Defined an administrative user to allow the monitoring daemon (`upsmon`) to comm
 ```
 *(Note: Replace `secret` with a strong password in production).*
 
----
-
-## 6. Monitor Configuration
-
-### 6.1 Mode (`/etc/nut/nut.conf`)
-
+### 2.4 Mode (`/etc/nut/nut.conf`)
 ```ini
 MODE=netserver
 ```
 
-### 6.2 Monitor (`/etc/nut/upsmon.conf`)
-
-Configured the local monitoring client to authenticate with the user created in Step 5.
-
+### 2.5 Local Monitor (`/etc/nut/upsmon.conf`)
+The master also monitors itself.
 ```ini
 MONITOR ups@localhost 1 admin secret master
 ```
 
 ---
 
-## 7. Testing & Verification
+## 3. Slave Configuration (PBS Node)
 
-### 7.1 Status Check
+The Backup Server (192.168.1.99) is configured as a **Network Client**. It monitors the UPS status remotely via the LAN.
 
+### 3.1 Installation
+```bash
+apt update
+apt install nut-client -y
+```
+
+### 3.2 Connection (`/etc/nut/upsmon.conf`)
+Configured to listen to the Master node securely as a slave.
+*Note: The `slave` flag ensures this node shuts down but does not command the UPS to cut power.*
+
+```ini
+MONITOR ups@192.168.1.100 1 admin secret slave
+```
+
+### 3.3 Mode (`/etc/nut/nut.conf`)
+```ini
+MODE=netclient
+```
+
+---
+
+## 4. Testing & Verification
+
+### 4.1 Master Check (PVE)
 ```bash
 upsc ups
 ```
 
-### 7.2 Behavior Logic
+### 4.2 Slave Check (PBS)
+Tested connectivity from the PBS node to the PVE node:
+```bash
+upsc ups@192.168.1.100
+```
+**Result:** Successful retrieval of battery status (Charge, Voltage, etc.).
 
-- **Voltage Dip/Spike**
-  UPS uses AVR (Automatic Voltage Regulation) to stabilize output without switching to battery.
+### 4.3 Behavior Logic
+- **Battery < 25%:** NUT triggers the shutdown command.
+- **Sequence:**
+    1.  **PBS (Slave)** detects the low battery status from PVE and shuts down immediately.
+    2.  **PVE (Master)** waits for the slave to disconnect (or a timeout), stops its own VMs/CTs, and powers off.
+    3.  **UPS** cuts power (if configured) or waits for AC restoration.
 
-- **Total Power Loss**
-  UPS switches to battery → NUT detects `OB` (*On Battery*).
+---
 
-- **Battery < 25%**
-  NUT triggers the shutdown command because of the override settings.
-
-- **Shutdown Sequence**
-  Proxmox gracefully stops all VMs/CTs, then powers off the host.
-
-This ensures data integrity and prevents filesystem corruption.
-
-## 8. Screenshots
+## 5. Screenshots
 
 <img width="800" alt="upsc ups result" src="https://github.com/user-attachments/assets/6b09f55b-912e-48e7-96df-e166dea1ef0b" />
