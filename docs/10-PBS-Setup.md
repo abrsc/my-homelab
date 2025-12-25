@@ -84,7 +84,6 @@ Since the UPS is connected to the PVE node, this server is configured as a netwo
 
 1.  **Repositories:** Configured "No-Subscription" repositories for updates.
 2.  **Updates:** Full system upgrade performed (`apt full-upgrade`).
-3.  **Boot Check:** System rebooted successfully (Video output issues on Ryzen 2400G resolved by headless operation/kernel update).
 
 ## 8. Screenshots
 <img width="800" alt="PBS SUMMARY" src="https://github.com/user-attachments/assets/98406959-0ee2-4683-bd55-9934ef1ce1f0" />
