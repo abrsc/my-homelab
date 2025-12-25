@@ -41,7 +41,7 @@ This setup is lightweight and allows full utilization of the disk without the RA
 
 ---
 
-## 4. Security & Encryption 🔒
+## 4. Security & Encryption
 
 To protect data against physical theft of the drive or server, **Client-Side Encryption** was enforced.
 
@@ -52,7 +52,7 @@ To protect data against physical theft of the drive or server, **Client-Side Enc
 
 ---
 
-## 5. Backup Strategy (GFS & Integrity) 🧹
+## 5. Backup Strategy (GFS & Integrity)
 
 A robust **Grandfather-Father-Son (GFS)** retention policy was configured in the Backup Job to balance history vs. disk space.
 
@@ -63,14 +63,14 @@ A robust **Grandfather-Father-Son (GFS)** retention policy was configured in the
 * **Keep Monthly:** `12` (One backup per month for the last year)
 * **Keep Yearly:** `1` (Long-term archival)
 
-### 5.2 Data Integrity (Verify Job) ✅
+### 5.2 Data Integrity (Verify Job)
 To detect "bit rot" or disk corruption, a scheduled verification task runs on the PBS server.
 * **Schedule:** Every Sunday at 10:00.
 * **Policy:** Re-verify snapshots older than 30 days.
 
 ---
 
-## 6. Power Protection (NUT Client) ⚡
+## 6. Power Protection (NUT Client)
 
 Since the UPS is connected to the PVE node, this server is configured as a network **Slave**.
 
