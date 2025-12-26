@@ -35,6 +35,7 @@ The network follows a strict zoning policy to avoid conflicts between static ser
 | **Applications** | `.102` | `wordpress` | Web Server | LXC |
 | *(.102 - .127)* | `.120` | `ghostfolio` | Finance Tracker | LXC |
 | **Connectivity** | *(DHCP)* | `cloudflared` | Cloudflare Tunnel | LXC |
+| | *(DHCP)* | `tailscale-gateway` | Subnet Router | LXC |
 | **DHCP Clients** | `.128 - .254`| - | Phones, PCs, IoT | Dynamic |
 
 ---
@@ -43,12 +44,12 @@ The network follows a strict zoning policy to avoid conflicts between static ser
 
 * **Hypervisor:** Proxmox VE 9
 * **Boot USB:** Ventoy & Rufus
-* **Network & Security:** Cloudflare Zero Trust (Tunnel), Nginx Proxy Manager.
+* **Network & Security:** Cloudflare Zero Trust (Tunnel), Nginx Proxy Manager, Tailscale (VPN/Subnet Router).
 * **Deployed Services:**
     * **AdGuard Home** (DNS/AdBlock)
     * **WordPress** (Production CMS behind Cloudflare Tunnel)
     * **Uptime Kuma** (Monitoring via Docker)
-* **Planned:** Active Directory, OPNsense, Kubernetes (K3s), Tailscale.
+* **Planned:** Active Directory, OPNsense, Kubernetes (K3s).
 ---
 
 ## 4. Project Documentation
@@ -80,4 +81,5 @@ All detailed installation, configuration, and troubleshooting steps are logged i
     * *(Monitoring stack deployed via Docker Compose on Rocky Linux)*
 
 * **Phase 3: Networking & Security**
-    * *[Coming Soon]*
+    * **[📄 11: LXC - Tailscale Subnet Router](./docs/11-LXC-Tailscale-SubnetRouter.md)**
+    * *(Secure remote access gateway, Subnet Routing, and global AdBlocking)*
