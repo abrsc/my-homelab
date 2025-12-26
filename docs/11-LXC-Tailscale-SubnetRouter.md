@@ -1,4 +1,4 @@
-# 11: LXC - Tailscale Subnet Router & Remote Access
+![Screenshot_20251226_193642_Termux](https://github.com/user-attachments/assets/88b9eaec-3a13-420c-8891-1eda08e3bd03)# 11: LXC - Tailscale Subnet Router & Remote Access
 
 This log documents the deployment of **Tailscale** using Proxmox Community Scripts.
 This container acts as a **Subnet Router**, allowing secure, zero-config VPN access to the entire local network (`192.168.1.x`) and forcing remote devices to use the local AdGuard DNS.
@@ -90,3 +90,7 @@ To prevent unauthorized access if the Google account is compromised:
 ---
 
 ## 7. Screenshots
+
+<img width="800" alt="Tailscale Admin Panel" src="https://github.com/user-attachments/assets/4c86cbee-f554-45c4-958d-03bdda682ec6" />
+<img width="800" alt="Ping" src="https://github.com/user-attachments/assets/58b695e2-0385-4eac-93d8-6570378716ed" />
+
