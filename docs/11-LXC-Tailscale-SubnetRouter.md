@@ -92,5 +92,5 @@ To prevent unauthorized access if the Google account is compromised:
 ## 7. Screenshots
 
 <img width="800" alt="Tailscale Admin Panel" src="https://github.com/user-attachments/assets/4c86cbee-f554-45c4-958d-03bdda682ec6" />
-<img width="800" alt="Ping" src="https://github.com/user-attachments/assets/58b695e2-0385-4eac-93d8-6570378716ed" />
+<img width="300" alt="Ping" src="https://github.com/user-attachments/assets/58b695e2-0385-4eac-93d8-6570378716ed" />
 
