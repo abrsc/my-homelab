@@ -29,13 +29,13 @@ The network follows a strict zoning policy to avoid conflicts between static ser
 | *(.1 - .49)* | | | | |
 | **Core Infra** | `.50` | `adguard-home-dns` | DNS Resolver | LXC |
 | *(.50 - .89)* | `.51` | `npmplus` | Reverse Proxy | LXC |
+| | `.52` | `cloudflared` | Cloudflare Tunnel | LXC |
+| | `.53` | `tailscale-gateway` | Subnet Router | LXC |
 | | `.60` | `docker-prod` | Docker Host | VM |
 | **Physical Hosts** | `.99` | `proxmox-pbs` | Backup Server | PBS 4.1 |
 | *(.90 - .101)* | `.100` | `proxmox-ve` | Hypervisor | PVE 9.1 |
 | **Applications** | `.102` | `wordpress` | Web Server | LXC |
 | *(.102 - .127)* | `.120` | `ghostfolio` | Finance Tracker | LXC |
-| **Connectivity** | *(DHCP)* | `cloudflared` | Cloudflare Tunnel | LXC |
-| | *(DHCP)* | `tailscale-gateway` | Subnet Router | LXC |
 | **DHCP Clients** | `.128 - .254`| - | Phones, PCs, IoT | Dynamic |
 
 ---
