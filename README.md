@@ -79,6 +79,8 @@ All detailed installation, configuration, and troubleshooting steps are logged i
     * *(Production deployment via Community Scripts, secured behind Cloudflare Zero Trust)*
     * **[📄 07: Docker Host - Uptime Kuma](./docs/07-Docker-UptimeKuma.md)**
     * *(Monitoring stack deployed via Docker Compose on Rocky Linux)*
+    * **[📄 12: VM - Cloud Storage Aggregation](./docs/12-Storage-OneDrive-Aggregation.md)**
+    * *(Merging multiple OneDrive accounts into a 5TB+ virtual drive using Rclone Union & Docker)*
 
 * **Phase 3: Networking & Security**
     * **[📄 11: LXC - Tailscale Subnet Router](./docs/11-LXC-Tailscale-SubnetRouter.md)**
