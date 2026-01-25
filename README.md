@@ -36,7 +36,7 @@ The network follows a strict zoning policy to avoid conflicts between static ser
 | | `.60` | `docker-prod` | Docker Host | VM |
 | **Physical Hosts** | `.99` | `proxmox-pbs` | Backup Server | PBS 4.1 |
 | *(.90 - .101)* | `.100` | `proxmox-ve` | Hypervisor | PVE 9.1 |
-| | `.101` | **`LEGION-ARNO`** | Admin Workstation | Windows |
+| | `.101` | `LEGION-ARNO` | Admin Workstation | Windows |
 | **Applications** | `.102` | `wordpress` | Web Server | LXC |
 | *(.102 - .129)* | `.103` | `wazuh-server` | SIEM / Security | LXC |
 | | `.120` | `ghostfolio` | Finance Tracker | LXC |
