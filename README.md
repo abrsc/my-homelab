@@ -31,12 +31,17 @@ The network follows a strict zoning policy to avoid conflicts between static ser
 | *(.50 - .89)* | `.51` | `npmplus` | Reverse Proxy | LXC |
 | | `.52` | `cloudflared` | Cloudflare Tunnel | LXC |
 | | `.53` | `tailscale-gateway` | Subnet Router | LXC |
+| | `.54` | `apache-guacamole` | Remote Access GW | LXC |
 | | `.60` | `docker-prod` | Docker Host | VM |
 | **Physical Hosts** | `.99` | `proxmox-pbs` | Backup Server | PBS 4.1 |
 | *(.90 - .101)* | `.100` | `proxmox-ve` | Hypervisor | PVE 9.1 |
+| | `.101` | **`LEGION-ARNO`** | Admin Workstation | Windows |
 | **Applications** | `.102` | `wordpress` | Web Server | LXC |
-| *(.102 - .127)* | `.120` | `ghostfolio` | Finance Tracker | LXC |
-| **DHCP Clients** | `.128 - .254`| - | Phones, PCs, IoT | Dynamic |
+| *(.102 - .129)* | `.103` | `wazuh-server` | SIEM / Security | LXC |
+| | `.120` | `ghostfolio` | Finance Tracker | LXC |
+| **Lab / AD Zone** | `.130` | `win-server-dc` | Domain Controller (AD) | VM (Planned) |
+| *(.130 - .199)* | `.143` | `win-ltsc-insti` | Daily Driver / Work | VM |
+| **DHCP Clients** | `.200 - .254` | - | Phones, PCs, IoT | Dynamic |
 
 ---
 
