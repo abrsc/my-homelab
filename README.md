@@ -90,3 +90,5 @@ All detailed installation, configuration, and troubleshooting steps are logged i
 * **Phase 3: Networking & Security**
     * **[📄 11: LXC - Tailscale Subnet Router](./docs/11-LXC-Tailscale-SubnetRouter.md)**
     * *(Secure remote access gateway, Subnet Routing, and global AdBlocking)*
+    * **[📄 13: Security Architecture - Zero Trust & Firewall](./docs/13-Security-Architecture.md)**
+    * *(Implementation of Network Micro-segmentation, standard Security Groups, and "Default Deny" policies across the cluster)*
