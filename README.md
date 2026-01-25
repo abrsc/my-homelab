@@ -32,6 +32,7 @@ The network follows a strict zoning policy to avoid conflicts between static ser
 | | `.52` | `cloudflared` | Cloudflare Tunnel | LXC |
 | | `.53` | `tailscale-gateway` | Subnet Router | LXC |
 | | `.54` | `apache-guacamole` | Remote Access GW | LXC |
+| | `.55` | `ansible-controller` | Automation / IaC | LXC |
 | | `.60` | `docker-prod` | Docker Host | VM |
 | **Physical Hosts** | `.99` | `proxmox-pbs` | Backup Server | PBS 4.1 |
 | *(.90 - .101)* | `.100` | `proxmox-ve` | Hypervisor | PVE 9.1 |
