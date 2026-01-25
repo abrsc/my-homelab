@@ -66,13 +66,13 @@ graph TD
     end
 
     subgraph "Secure LAN"
-        WP --x|BLOCKED (Rule 10)| NAS[Backup Server]
-        WP --x|BLOCKED (Rule 10)| PC[Admin PC]
+        WP --x|"BLOCKED - Rule 10"| NAS[Backup Server]
+        WP --x|"BLOCKED - Rule 10"| PC[Admin PC]
     end
 
     subgraph "Management Plane"
-        Guac[Guacamole] -->|SSH/RDP (Override)| WP
-        Guac -->|SSH/RDP (Override)| NAS
+        Guac[Guacamole] -->|"SSH/RDP - Override"| WP
+        Guac -->|"SSH/RDP - Override"| NAS
     end
 ```
 
