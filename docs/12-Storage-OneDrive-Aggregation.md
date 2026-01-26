@@ -6,7 +6,7 @@ This log documents the creation of a massive virtual storage array by aggregatin
 
 ## 1. Objective
 
-To create a centralized, high-capacity file server (5TB+) without purchasing physical hard drives, leveraging free cloud storage tiers.
+To create a centralized, high-capacity file server (5TB+) without purchasing physical hard drives, leveraging family cloud storage tiers.
 
 * **Aggregation:** Combine multiple separate OneDrive accounts (1TB+ each) into a single mount point (`/mnt/cloud_storage`).
 * **Cost Efficiency:** $0 hardware cost for storage expansion.
