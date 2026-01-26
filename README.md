@@ -38,7 +38,7 @@ The network follows a strict zoning policy to avoid conflicts between static ser
 | *(.90 - .101)* | `.100` | `proxmox-ve` | Hypervisor | PVE 9.1 |
 | | `.101` | `LEGION-ARNO` | Admin Workstation | Windows |
 | **Applications** | `.102` | `wordpress` | Web Server | LXC |
-| *(.102 - .129)* | `.103` | `wazuh-server` | SIEM / Security | LXC |
+| *(.102 - .129)* | `.103` | `wazuh` | SIEM / Security | LXC |
 | | `.120` | `ghostfolio` | Finance Tracker | LXC |
 | **Lab / AD Zone** | `.130` | `win-server-dc` | Domain Controller (AD) | VM (Planned) |
 | *(.130 - .199)* | `.143` | `win-ltsc-insti` | Daily Driver / Work | VM |
