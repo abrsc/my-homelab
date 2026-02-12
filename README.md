@@ -39,6 +39,7 @@ The network follows a strict zoning policy to avoid conflicts between static ser
 | | `.101` | `LEGION-ARNO` | Admin Workstation | Windows |
 | **Applications** | `.102` | `wordpress` | Web Server | LXC |
 | *(.102 - .129)* | `.103` | `wazuh` | SIEM / Security | LXC |
+| | `.104` | `ollama-core` | Local LLM Engine | LXC |
 | | `.120` | `ghostfolio` | Finance Tracker | LXC |
 | **Lab / AD Zone** | `.130` | `win-server-dc` | Domain Controller (AD) | VM (Planned) |
 | *(.130 - .199)* | `.143` | `win-ltsc-insti` | Daily Driver / Work | VM |
@@ -50,11 +51,14 @@ The network follows a strict zoning policy to avoid conflicts between static ser
 
 * **Hypervisor:** Proxmox VE 9
 * **Boot USB:** Ventoy & Rufus
-* **Network & Security:** Cloudflare Zero Trust (Tunnel), Nginx Proxy Manager, Tailscale (VPN/Subnet Router).
+* **Automation:** Ansible (Fleet management & IaC)
+* **Network & Security:** Cloudflare Zero Trust (Tunnel), Nginx Proxy Manager, Tailscale (VPN/Subnet Router), Wazuh SIEM.
+* **AI & Compute:** Ollama (LLM Engine), Open WebUI (Interface)
 * **Deployed Services:**
     * **AdGuard Home** (DNS/AdBlock)
     * **WordPress** (Production CMS behind Cloudflare Tunnel)
     * **Uptime Kuma** (Monitoring via Docker)
+
 * **Planned:** Active Directory, OPNsense, Kubernetes (K3s).
 ---
 
@@ -87,9 +91,15 @@ All detailed installation, configuration, and troubleshooting steps are logged i
     * *(Monitoring stack deployed via Docker Compose on Rocky Linux)*
     * **[📄 12: VM - Cloud Storage Aggregation](./docs/12-Storage-OneDrive-Aggregation.md)**
     * *(Merging multiple OneDrive accounts into a 4TB+ virtual drive using Rclone Union & Docker)*
+    * **[📄 15: Automation - Ansible Management](./docs/15-Automation-Ansible-Management.md)**
+    * *(Fleet management, SSH key distribution and automated task execution)*
+    * **[📄 16: AI Stack - GPU Passthrough](./docs/16-AI-Stack-GPU-Passthrough.md)**
+    * *(Enabling RTX 3060 compute inside LXC for Ollama and Open WebUI)*
 
 * **Phase 3: Networking & Security**
     * **[📄 11: LXC - Tailscale Subnet Router](./docs/11-LXC-Tailscale-SubnetRouter.md)**
     * *(Secure remote access gateway, Subnet Routing, and global AdBlocking)*
     * **[📄 13: Security Architecture - Zero Trust & Firewall](./docs/13-Security-Architecture.md)**
     * *(Implementation of Network Micro-segmentation, standard Security Groups, and "Default Deny" policies across the cluster)*
+    * **[📄 14: SIEM - Wazuh & Telegram Alerts](./docs/14-Wazuh-SIEM-Deployment.md)**
+    * *(Centralized log monitoring, EDR agents, and real-time security alerts via Telegram)*
