@@ -41,7 +41,7 @@ The network follows a strict zoning policy to avoid conflicts between static ser
 | *(.102 - .129)* | `.103` | `wazuh` | SIEM / Security | LXC |
 | | `.104` | `ollama-core` | Local LLM Engine | LXC |
 | | `.120` | `ghostfolio` | Finance Tracker | LXC |
-| **Lab / AD Zone** | `.130` | `win-server-dc` | Domain Controller (AD) | VM (Planned) |
+| **Lab / AD Zone** | `.130` | `win-server-dc` | Domain Controller (AD) | VM |
 | *(.130 - .199)* | `.143` | `win-ltsc-insti` | Daily Driver / Work | VM |
 | **DHCP Clients** | `.200 - .254` | - | Phones, PCs, IoT | Dynamic |
 
