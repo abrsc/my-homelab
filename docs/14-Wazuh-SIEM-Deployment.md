@@ -140,6 +140,6 @@ def get_geoip_info(ip):
 
 ## 6. Screenshots
 <img width="800" alt="Wazuh Dashboard" src="https://github.com/user-attachments/assets/89971ce6-5277-409f-a533-62ee8655e695" />
-<img width="800" alt="Telegram BOT" src="https://github.com/user-attachments/assets/456f78a8-a3c3-4e12-8397-0341c523d1ef" />
+<img width="400" alt="Telegram BOT" src="https://github.com/user-attachments/assets/456f78a8-a3c3-4e12-8397-0341c523d1ef" />
 
 
