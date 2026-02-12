@@ -78,8 +78,8 @@ graph TD
 
     subgraph "Management Plane"
         Guac[Guacamole] -->|"SSH/RDP"| WP
-        Ansible[.55 Ansible] -->|"SSH Port 22"| NPM
-        Ansible -->|"SSH Port 22"| WP
+        Ansible[Ansible] -->|"SSH"| NPM
+        Ansible -->|"SSH"| WP
     end
     WP -->|Logs| Wazuh[.103 Wazuh]
     NPM -->|Logs| Wazuh
