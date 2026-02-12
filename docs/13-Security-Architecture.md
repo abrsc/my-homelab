@@ -26,11 +26,12 @@ A baseline Security Group (`default-sg`) is applied to **all** LXC containers an
 | **1** | **IN** | `ACCEPT` | TCP | `192.168.1.51` | 80, 443, 81... | Allow legitimate web traffic forwarding from the Reverse Proxy. |
 | **2** | **IN** | `ACCEPT` | UDP | `0.0.0.0/0` | 67, 68 | Allow DHCP assignment. |
 | **3** | **IN** | `ACCEPT` | ICMP | `192.168.1.0/24` | - | Allow Ping for internal diagnostics. |
-| **4-7**| **IN** | `ACCEPT` | TCP | `192.168.1.54` (Guac), `192.168.1.101` (PC) | 22, 3389, 5900 | Allow Management access (SSH/RDP/VNC) **only** from the Guacamole Gateway or Admin PC. |
+| **4-7**| **IN** | `ACCEPT` | TCP | `192.168.1.55` (Ansible), `192.168.1.54` (Guac), `192.168.1.101` (PC) | 22, 3389, 5900 | Allow Management access from Jumpboxes (Guacamole, PC) and Ansible Controller (SSH Only) |
 | **8** | **OUT** | `ACCEPT` | UDP | `192.168.1.50` | 53 | Allow DNS resolution via local AdGuard Home. |
-| **9** | **OUT** | `ACCEPT` | TCP | `192.168.1.103` | 1514, 1515 | **Provisioning:** Open flow for future Wazuh Agent logs. |
-| **10**| **OUT** | `REJECT` | Any | `192.168.1.0/24` | Any | **ISOLATION RULE:** Prevents compromised containers from accessing the LAN. |
-| **11**| **OUT** | `ACCEPT` | Any | `0.0.0.0/0` | Any | Allow outgoing Internet access (Updates, API calls). |
+| **9** | **OU** | `ACCEPT` | ICMP | `192.168.1.0/24` | - | Allow Ping for internal diagnostics. |
+| **10** | **OUT** | `ACCEPT` | TCP | `192.168.1.103` | 1514, 1515 | **Active:** Agents forwarding logs to SIEM Manager. |
+| **11**| **OUT** | `REJECT` | Any | `192.168.1.0/24` | Any | **ISOLATION RULE:** Prevents compromised containers from accessing the LAN. |
+| **12**| **OUT** | `ACCEPT` | Any | `0.0.0.0/0` | Any | Allow outgoing Internet access (Updates, API calls). |
 
 ---
 
@@ -47,6 +48,11 @@ While the Security Group enforces isolation, specific infrastructure roles (like
 * **Role:** Remote Administration bridging.
 * **Exception:** Must reach all management endpoints via RDP/SSH.
 * **Override Rule:** `OUT ACCEPT TCP` -> `192.168.1.0/24` on Ports 22, 3389, 5900.
+
+### C. Ansible Automation Controller (.55)
+* **Role:** Fleet management and automated deployment.
+* **Access Policy:** The controller is authorized to initiate SSH connections to all containers.
+* **Override Rule:** `OUT ACCEPT TCP` -> `192.168.1.0/24` on on Port 22.
 
 ---
 
@@ -71,20 +77,23 @@ graph TD
     end
 
     subgraph "Management Plane"
-        Guac[Guacamole] -->|"SSH/RDP - Override"| WP
-        Guac -->|"SSH/RDP - Override"| NAS
+        Guac[Guacamole] -->|"SSH/RDP"| WP
+        Ansible[.55 Ansible] -->|"SSH Port 22"| NPM
+        Ansible -->|"SSH Port 22"| WP
     end
+    WP -->|Logs| Wazuh[.103 Wazuh]
+    NPM -->|Logs| Wazuh
 ```
 
 ---
 
-## 5. Roadmap: SIEM Integration (Wazuh)
+## 5. Monitoring & SIEM Status (Wazuh)
 
-The infrastructure is currently **provisioned** for SIEM integration. The network paths (Rule #9) are open, and the server (`.103`) is deployed.
-
-* **Current Status:** Wazuh Server deployed. Windows Agent connected for testing.
-* **Next Step (Automation):** Deploy Wazuh Agents to all LXC containers using **Ansible**.
-* **Objective:** Forward system logs and firewall rejection events to verify the efficacy of the "Default Deny" policy.
+The infrastructure is now fully monitored by **Wazuh SIEM**. 
+* **Deployment:** Agents are deployed across all LXC and VMs using Ansible.
+* **Logging:** Real-time log collection and FIM (File Integrity Monitoring) are active.
+* **Alerting:** Critical security events are forwarded to Telegram via the Wazuh manager.
+* **Firewall Verification:** Log events confirm that unauthorized "East-West" traffic is successfully blocked by Rule #10.
 
 ---
 
