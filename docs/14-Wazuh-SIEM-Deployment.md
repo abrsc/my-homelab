@@ -15,7 +15,7 @@ The goal is to centralize security logs from all VMs and LXCs, monitor file inte
 * **Host:** Dedicated Instance (LXC/VM)
 * **IP Address:** `192.168.1.103`
 * **Method:** Standard installation on Debian 12.
-* **External Access:** * Secured via **Nginx Proxy Manager** (HTTPS).
+* **External Access:** Secured via **Nginx Proxy Manager** (HTTPS). 
     * Protected by **Cloudflare Zero Trust** (Email OTP required to see the dashboard).
 
 ---
@@ -139,3 +139,7 @@ def get_geoip_info(ip):
 ---
 
 ## 6. Screenshots
+<img width="800" alt="Wazuh Dashboard" src="https://github.com/user-attachments/assets/89971ce6-5277-409f-a533-62ee8655e695" />
+<img width="800" alt="Telegram BOT" src="https://github.com/user-attachments/assets/456f78a8-a3c3-4e12-8397-0341c523d1ef" />
+
+
