@@ -26,7 +26,7 @@ The network follows a strict zoning policy to avoid conflicts between static ser
 | Zone / Range | IP Address | Hostname | Role | Type |
 | :--- | :--- | :--- | :--- | :--- |
 | **Network Gear** | `.1` | `ZTE:F6640` | Router / Gateway | Hardware |
-| *(.1 - .49)* | | | | |
+| *(.1 - .49)* | `.2` | `Xiaomi:BE3600` | Access Point | Hardware |
 | **Core Infra** | `.50` | `adguard-home-dns` | DNS Resolver | LXC |
 | *(.50 - .89)* | `.51` | `npmplus` | Reverse Proxy | LXC |
 | | `.52` | `cloudflared` | Cloudflare Tunnel | LXC |
@@ -34,8 +34,9 @@ The network follows a strict zoning policy to avoid conflicts between static ser
 | | `.54` | `apache-guacamole` | Remote Access GW | LXC |
 | | `.55` | `ansible-controller` | Automation / IaC | LXC |
 | | `.60` | `docker-prod` | Docker Host | VM |
-| **Physical Hosts** | `.99` | `proxmox-pbs` | Backup Server | PBS 4.1 |
-| *(.90 - .101)* | `.100` | `proxmox-ve` | Hypervisor | PVE 9.1 |
+| **Physical Hosts** | `.90` | `arnos-macbook-air` | Admin Laptop | macOS |
+| *(.90 - .101)* | `.99` | `proxmox-pbs` | Backup Server | PBS 4.1 |
+| | `.100` | `proxmox-ve` | Hypervisor | PVE 9.1 |
 | | `.101` | `LEGION-ARNO` | Admin Workstation | Windows |
 | **Applications** | `.102` | `wordpress` | Web Server | LXC |
 | *(.102 - .129)* | `.103` | `wazuh` | SIEM / Security | LXC |
