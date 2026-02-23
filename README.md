@@ -10,7 +10,7 @@ The goal is to build a hands-on environment to practice system administration, n
 * **Server:** Custom Workstation (Asus PRIME H510M-A R2.0)
 * **CPU:** Intel Core i5-10400
 * **RAM:** 64GB DDR4 2666MHz
-* **GPU:** NVIDIA GeForce RTX 3060 12GB (Planned for AI & Transcoding)
+* **GPU:** NVIDIA GeForce RTX 3060 12GB
 * **Storage:**
     * **System & ISOs:** 480GB SATA SSD
     * **VM Storage:** 1TB NVMe
