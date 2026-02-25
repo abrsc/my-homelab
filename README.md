@@ -27,7 +27,7 @@ The network follows a strict zoning policy to avoid conflicts between static ser
 | :--- | :--- | :--- | :--- | :--- |
 | **Network Gear** | `.1` | `ZTE:F6640` | Router / Gateway | Hardware |
 | *(.1 - .49)* | `.2` | `Xiaomi:BE3600` | Access Point | Hardware |
-| | `.48` | `opnsense` | Security Appliance | LXC |
+| | `.48` | `opnsense` | Security Appliance | VM |
 | | `.49` | `HP Printer` | Printer | Hardware |
 | **Core Infra** | `.50` | `adguard-home-dns` | DNS Resolver | LXC |
 | *(.50 - .89)* | `.51` | `npmplus` | Reverse Proxy | LXC |
