@@ -2,7 +2,7 @@
 
 > ⚠️ **PROJECT STATUS: DEPRECATED & ARCHIVED**
 > 
-> **Reason for Decommissioning:** > During production testing, this Rclone Union stack encountered severe stability issues during bulk file transfers. Parallel uploads triggered Microsoft Graph API Rate Limiting and Throttling, leading to packet drops, failed transfers, and frequent OAuth token invalidations (account disconnections). While single-file transfers functioned correctly, heavy parallel I/O load proved unsustainable.
+> **Reason for Decommissioning:** During production testing, this Rclone Union stack encountered severe stability issues during bulk file transfers. Parallel uploads triggered Microsoft Graph API Rate Limiting and Throttling, leading to packet drops, failed transfers, and frequent OAuth token invalidations (account disconnections). While single-file transfers functioned correctly, heavy parallel I/O load proved unsustainable.
 > 
 > **Architectural Resolution:**
 > To ensure filesystem reliability and data integrity without wasting administrative overhead on continuous API troubleshooting, a "Buy" decision was made. The custom Rclone/Docker stack was decommissioned from the hypervisor and replaced by a dedicated commercial multi-account aggregation utility running on the client workstation.
