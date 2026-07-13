@@ -68,6 +68,11 @@ To detect "bit rot" or disk corruption, a scheduled verification task runs on th
 * **Schedule:** Every Sunday at 10:00.
 * **Policy:** Re-verify snapshots older than 30 days.
 
+### 5.3 Space Reclamation (Garbage Collection Job)
+While the PVE retention policy flags old snapshots for deletion (Prune), PBS does not automatically free up the corresponding disk blocks. A dedicated Garbage Collection task is required to physically purge unreferenced data chunks from the XFS filesystem.
+* **Schedule:** Every Saturday at 18:15 (Scheduled during a low-activity weekend window to minimize CPU/IO impact on the mechanical drive).
+* **Purpose:** Permanently deletes orphaned chunks, reclaims storage capacity, and forces PBS to recalculate the actual *Deduplication Factor*.
+
 ---
 
 ## 6. Power Protection (NUT Client)
@@ -89,5 +94,3 @@ Since the UPS is connected to the PVE node, this server is configured as a netwo
 <img width="800" alt="PBS SUMMARY" src="https://github.com/user-attachments/assets/98406959-0ee2-4683-bd55-9934ef1ce1f0" />
 <img width="800" alt="PBS CONTENT" src="https://github.com/user-attachments/assets/92bf71e5-cd52-4189-af91-d9411d1963cb" />
 <img width="800" alt="PVE BACKUP JOB RETENTION" src="https://github.com/user-attachments/assets/a29ea1d1-9001-402e-a955-7caed5415567" />
-
-
