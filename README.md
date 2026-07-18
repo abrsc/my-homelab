@@ -7,6 +7,7 @@ The goal is to build a hands-on environment to practice system administration, n
 ---
 
 ## 1. Hardware Stack
+
 * **Server:** Custom Workstation (Asus PRIME H510M-A R2.0)
 * **CPU:** Intel Core i5-10400
 * **RAM:** 64GB DDR4 2666MHz
@@ -44,9 +45,11 @@ The network follows a strict zoning policy to avoid conflicts between static ser
 | *(.102 - .129)* | `.103` | `wazuh` | SIEM / Security | LXC |
 | | `.104` | `ollama-core` | Local LLM Engine | LXC |
 | | `.120` | `ghostfolio` | Finance Tracker | LXC |
-| **Lab / AD Zone** | `.130` | `win-server-dc` | Domain Controller (AD) | VM |
-| *(.130 - .199)* | `.143` | `win-ltsc-insti` | Daily Driver / Work | VM |
 | **DHCP Clients** | `.200 - .254` | - | Phones, PCs, IoT | Dynamic |
+| **Microsoft Lab** | `10.10.30.0/24` | `VLAN 30` | AD / Entra Lab | Network |
+| *(10.10.30.0/24)* | `.2` | `win-dc01` | Domain Controller / DNS | VM |
+| | `.3` | `win-mgmt01` | WAC / Hyper-V / Cloud Sync | VM |
+| | `.100` | `win-cli01` | Domain-joined Client | VM |
 
 ---
 
@@ -55,14 +58,18 @@ The network follows a strict zoning policy to avoid conflicts between static ser
 * **Hypervisor:** Proxmox VE 9
 * **Boot USB:** Ventoy & Rufus
 * **Automation:** Ansible (Fleet management & IaC)
-* **Network & Security:** Cloudflare Zero Trust (Tunnel), Nginx Proxy Manager, Tailscale (VPN/Subnet Router), Wazuh SIEM.
+* **Network & Security:** OPNsense, Cloudflare Zero Trust (Tunnel), Nginx Proxy Manager, Tailscale (VPN/Subnet Router), Wazuh SIEM.
 * **AI & Compute:** Ollama (LLM Engine), Open WebUI (Interface)
+* **Microsoft Lab:** Active Directory, DNS, GPO, Windows Admin Center, Hyper-V, Microsoft Entra Cloud Sync, Password Hash Sync.
 * **Deployed Services:**
     * **AdGuard Home** (DNS/AdBlock)
     * **WordPress** (Production CMS behind Cloudflare Tunnel)
     * **Uptime Kuma** (Monitoring via Docker)
+    * **Wazuh** (SIEM / Security Monitoring)
+    * **Ghostfolio** (Finance Tracker)
+    * **Ollama / Open WebUI** (Local AI stack)
+* **Planned:** Kubernetes (K3s), Microsoft Intune / Autopilot.
 
-* **Planned:** Active Directory, OPNsense, Kubernetes (K3s).
 ---
 
 ## 4. Project Documentation
@@ -106,3 +113,11 @@ All detailed installation, configuration, and troubleshooting steps are logged i
     * *(Implementation of Network Micro-segmentation, standard Security Groups, and "Default Deny" policies across the cluster)*
     * **[📄 14: SIEM - Wazuh & Telegram Alerts](./docs/14-Wazuh-SIEM-Deployment.md)**
     * *(Centralized log monitoring, EDR agents, and real-time security alerts via Telegram)*
+    * **[📄 17: Network Segmentation - OPNsense & VLANs](./docs/19-Network-Segmentation-OPNsense.md)**
+    * *(Implementation of enterprise VLAN routing, isolated AD lab subnet, and Tor-routed SecOps zone)*
+
+* **Phase 4: Microsoft Lab**
+    * **[📄 18: Microsoft Hybrid Identity Lab](./docs/17-Microsoft-Hybrid-Identity-Lab.md)**
+    * *(Active Directory, Windows Admin Center, Hyper-V, Microsoft Entra Cloud Sync and Password Hash Sync)*
+    * **[📄 19: Active Directory Design](./docs/18-Active-Directory-Design.md)**
+    * *(OU structure, Group Policy layout, delegated administration and AGDLP-inspired group model)*
