@@ -49,7 +49,7 @@ The network follows a strict zoning policy to avoid conflicts between static ser
 | **Microsoft Lab** | `10.10.30.0/24` | `VLAN 30` | AD / Entra Lab | Network |
 | *(10.10.30.0/24)* | `.2` | `win-dc01` | Domain Controller / DNS | VM |
 | | `.3` | `win-mgmt01` | WAC / Hyper-V / Cloud Sync | VM |
-| | `.100` | `win-cli01` | Domain-joined Client | VM |
+| | `DHCP (.100)` | `win-cli01` | Domain-joined Client | VM |
 
 ---
 
