@@ -39,7 +39,7 @@ The network follows a strict zoning policy to avoid conflicts between static ser
 | | `.60` | `docker-prod` | Docker Host | VM |
 | **Physical Hosts** | `.90` | `arnos-macbook-air` | Admin Laptop | macOS |
 | *(.90 - .101)* | `.99` | `proxmox-pbs` | Backup Server | PBS 4.1 |
-| | `.100` | `proxmox-ve` | Hypervisor | PVE 9.1 |
+| | `.100` | `proxmox-ve` | Hypervisor | PVE 9.2 |
 | | `.101` | `LEGION-ARNO` | Admin Workstation | Windows |
 | **Applications** | `.102` | `wordpress` | Web Server | LXC |
 | *(.102 - .129)* | `.103` | `wazuh` | SIEM / Security | LXC |
@@ -68,7 +68,7 @@ The network follows a strict zoning policy to avoid conflicts between static ser
     * **Wazuh** (SIEM / Security Monitoring)
     * **Ghostfolio** (Finance Tracker)
     * **Ollama / Open WebUI** (Local AI stack)
-* **Planned:** Kubernetes (K3s), Microsoft Intune / Autopilot.
+* **Planned:** Kubernetes (K3s), Microsoft Intune / Autopilot (first tests done with `win-intune01`, `win-mgmt01` and `win-dc01` on a Microsoft 365 tenant, not documented yet).
 
 ---
 
@@ -113,11 +113,11 @@ All detailed installation, configuration, and troubleshooting steps are logged i
     * *(Implementation of Network Micro-segmentation, standard Security Groups, and "Default Deny" policies across the cluster)*
     * **[📄 14: SIEM - Wazuh & Telegram Alerts](./docs/14-Wazuh-SIEM-Deployment.md)**
     * *(Centralized log monitoring, EDR agents, and real-time security alerts via Telegram)*
-    * **[📄 17: Network Segmentation - OPNsense & VLANs](./docs/19-Network-Segmentation-OPNsense.md)**
+    * **[📄 17: Network Segmentation - OPNsense & VLANs](./docs/17-Network-Segmentation-OPNsense.md)**
     * *(Implementation of enterprise VLAN routing, isolated AD lab subnet, and Tor-routed SecOps zone)*
 
 * **Phase 4: Microsoft Lab**
-    * **[📄 18: Microsoft Hybrid Identity Lab](./docs/17-Microsoft-Hybrid-Identity-Lab.md)**
+    * **[📄 18: Microsoft Hybrid Identity Lab](./docs/18-Microsoft-Hybrid-Identity-Lab.md)**
     * *(Active Directory, Windows Admin Center, Hyper-V, Microsoft Entra Cloud Sync and Password Hash Sync)*
-    * **[📄 19: Active Directory Design](./docs/18-Active-Directory-Design.md)**
+    * **[📄 19: Active Directory Design](./docs/19-Active-Directory-Design.md)**
     * *(OU structure, Group Policy layout, delegated administration and AGDLP-inspired group model)*
